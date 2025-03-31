@@ -1,0 +1,2 @@
+# GlotifyBOT
+Bot for Discord
