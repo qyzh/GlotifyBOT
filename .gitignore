@@ -122,6 +122,9 @@ dist
 # DynamoDB Local files
 .dynamodb/
 
+# Cursor rules
+.cursor/rules
+
 # TernJS port file
 .tern-port
 

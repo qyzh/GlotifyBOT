@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 255, 0;
+  --background-rgb: 0, 0, 0;
+  --terminal-green: #00ff00;
+  --terminal-dark: #1a1a1a;
+  --terminal-border: #333;
+}
+
+body {
+  color: var(--terminal-green);
+  background: rgb(var(--background-rgb));
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Linux-style scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--terminal-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--terminal-green);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00cc00;
+}
+
+/* Terminal text selection */
+::selection {
+  background: var(--terminal-green);
+  color: var(--terminal-dark);
+}
+
+/* Linux-style link */
+a {
+  color: var(--terminal-green);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Linux-style code block */
+pre, code {
+  background: var(--terminal-dark);
+  border: 1px solid var(--terminal-green);
+  padding: 8px;
+  border-radius: 3px;
+  font-family: inherit;
+}
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+} 
