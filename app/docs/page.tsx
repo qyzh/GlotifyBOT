@@ -33,21 +33,25 @@ export default function DocsPage() {
         <DocSection id="commands" title="Bot Commands">
           <p className="mb-6 text-white/80">Available slash commands:</p>
           <ul className="grid grid-cols-1 gap-4">
+          <p className="mb-6 text-white/80">Dota 2 commands:</p>
             <li className="flex items-center space-x-2 text-white">
               <code className="bg-black px-2 py-1 rounded text-sm border border-white/20 text-white/90">/whois</code>
               <span>To get the player's profile</span>
             </li>
             <li className="flex items-center space-x-2 text-white">
-              <code className="bg-black px-2 py-1 rounded text-sm border border-white/20 text-white/90">/notes</code>
-              <span>Access and manage your personal match notes</span>
-            </li>
-            <li className="flex items-center space-x-2 text-white">
               <code className="bg-black px-2 py-1 rounded text-sm border border-white/20 text-white/90">/match</code>
-              <span>get the match details</span>
+              <span>Get detailed information about a specific Dota 2 match</span>
             </li>
             <li className="flex items-center space-x-2 text-white">
               <code className="bg-black px-2 py-1 rounded text-sm border border-white/20 text-white/90">/recentmatch</code>
-              <span>get the recent match details</span>
+              <span>Recent match from a user.</span>
+            </li>
+            </ul>
+            <ul className="grid grid-cols-1 gap-4">
+            <p className="mb-6 text-white/80">Other commands:</p>
+            <li className="flex items-center space-x-2 text-white">
+              <code className="bg-black px-2 py-1 rounded text-sm border border-white/20 text-white/90">/notes</code>
+              <span>Access and manage your personal match notes</span>
             </li>
             <li className="flex items-center space-x-2 text-white">
               <code className="bg-black px-2 py-1 rounded text-sm border border-white/20 text-white/90">/kataharini</code>
