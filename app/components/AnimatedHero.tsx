@@ -145,26 +145,26 @@ const features = [
   {
     title: "/kataharini",
     description: "Get your daily dose of motivation with Kataharini quotes",
-    link: "/commands#kataharini"
+    link: "/docs#commands"
   },
   {
     title: "/whois",
     description: "View detailed information about a player's profile",
-    link: "/commands#whois"
+    link: "/docs#commands"
   },
   {
     title: "/recentmatch",
     description: "Check out the latest match details and statistics",
-    link: "/commands#recentmatch"
+    link: "/docs#commands"
   },
   {
     title: "/notes",
     description: "Access and manage your personal match notes",
-    link: "/commands#notes"
+    link: "/docs#commands"
   },
   {
     title: "/match",
     description: "Get comprehensive information about a specific match",
-    link: "/commands#match"
+    link: "/docs#commands"
   }
 ]; 
