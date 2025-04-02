@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 255, 0;
+  --foreground-rgb: 88, 101, 242;
   --background-rgb: 0, 0, 0;
-  --terminal-green: #00ff00;
+  --terminal-green: #5865F2;
   --terminal-dark: #1a1a1a;
   --terminal-border: #333;
 }
@@ -34,7 +34,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00cc00;
+  background: #4752c4;
 }
 
 /* Terminal text selection */
