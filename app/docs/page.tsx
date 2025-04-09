@@ -1,23 +1,55 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Sidebar } from '../components/Sidebar';
-import { MobileMenuButton } from '../components/docs/MobileMenuButton';
-import { DocSection } from '../components/docs/DocSection';
+import Sidebar from '../components/Sidebar';
+
+interface DocSectionProps {
+  id: string;
+  title: string;
+  children: React.ReactNode;
+}
+
+const DocSection: React.FC<DocSectionProps> = ({ id, title, children }) => {
+  return (
+    <section id={id} className="mb-12 scroll-mt-20">
+      <h2 className="text-2xl font-semibold mb-6 text-white border-b border-white/20 pb-2 font-mono">
+        {title}
+      </h2>
+      <div className="bg-black shadow-sm rounded-lg border border-white/20 p-4 lg:p-6">
+        {children}
+      </div>
+    </section>
+  );
+};
 
 export default function DocsPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  const mainNavItems = [
+    { href: '#installation', label: '$ ./installation' },
+    { href: '#commands', label: '$ ./commands' },
+    { href: '#permissions', label: '$ ./permissions' },
+    { href: '#troubleshooting', label: '$ ./troubleshooting' },
+    { href: '#support', label: '$ ./support' },
+  ];
+
+  const additionalNavItems = [
+    { href: '/', label: '$ cd ..', isExternal: true },
+    { href: '/terms-of-service', label: '$ cat terms.txt', isExternal: true },
+    { href: '/privacy-policy', label: '$ cat privacy.txt', isExternal: true },
+  ];
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className="flex min-h-screen bg-black">
-      <MobileMenuButton 
-        isOpen={isSidebarOpen} 
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)} 
-      />
-      
       <Sidebar 
         isOpen={isSidebarOpen} 
-        onClose={() => setIsSidebarOpen(false)} 
+        onClose={toggleSidebar}
+        mainNavItems={mainNavItems}
+        additionalNavItems={additionalNavItems}
       />
 
       <main className="flex-1 container mx-auto px-4 py-12 max-w-4xl lg:ml-64">

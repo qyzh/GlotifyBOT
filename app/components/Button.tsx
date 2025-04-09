@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { animate } from 'motion';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
@@ -26,15 +26,33 @@ export default function Button({
     ghost: "text-white hover:bg-white/5"
   };
 
+  const handleMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
+    animate(e.currentTarget, { scale: 1.05 }, { duration: 0.2 });
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
+    animate(e.currentTarget, { scale: 1 }, { duration: 0.2 });
+  };
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLButtonElement>) => {
+    animate(e.currentTarget, { scale: 0.95 }, { duration: 0.1 });
+  };
+
+  const handleMouseUp = (e: React.MouseEvent<HTMLButtonElement>) => {
+    animate(e.currentTarget, { scale: 1 }, { duration: 0.1 });
+  };
+
   const buttonContent = (
-    <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+    <button
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
       onClick={onClick}
       className={cn(baseStyles, variants[variant], className)}
     >
       {children}
-    </motion.button>
+    </button>
   );
 
   if (href) {

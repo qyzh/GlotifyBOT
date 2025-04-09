@@ -1,5 +1,6 @@
 import React from 'react';
 import './globals.css';
+import Footer from './components/footer';
 
 export default function RootLayout({
     children,
@@ -8,7 +9,12 @@ export default function RootLayout({
   }) {
     return (
       <html lang="en">
-        <body className="min-h-screen">{children}</body>
+        <body className="min-h-screen flex flex-col">
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </body>
       </html>
     )
   }

@@ -1,26 +1,61 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { animate } from 'motion';
 import Link from 'next/link';
-import { Sidebar } from '../components/Sidebar';
-import { useState } from 'react';
+import Sidebar from '../components/Sidebar';
+import { useState, useEffect, useRef } from 'react';
 
 export default function TermsOfService() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const contentRef = useRef<HTMLDivElement>(null);
 
+  const mainNavItems = [
+    { href: '#acceptance', label: '$ ./introduction' },
+    { href: '#service', label: '$ ./service-description' },
+    { href: '#responsibilities', label: '$ ./user-requirements' },
+    { href: '#intellectual-property', label: '$ ./data-usage' },
+    { href: '#liability', label: '$ ./user-conduct' },
+    { href: '#changes', label: '$ ./limitations' },
+    { href: '#rate-limits', label: '$ ./rate-limits' },
+    { href: '#ip', label: '$ ./intellectual-property' },
+    { href: '#terms-changes', label: '$ ./terms-changes' },
+    { href: '#termination', label: '$ ./termination' },
+    { href: '#warranty', label: '$ ./warranty' },
+    { href: '#liability-limits', label: '$ ./liability-limits' },
+  ];
+
+  const additionalNavItems = [
+    { href: '/', label: '$ cd ..', isExternal: true },
+    { href: '/terms-of-service', label: '$ cat terms.txt', isExternal: true },
+    { href: '/privacy-policy', label: '$ cat privacy.txt', isExternal: true },
+  ];
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  useEffect(() => {
+    if (contentRef.current) {
+      animate(
+        contentRef.current,
+        { opacity: [0, 1], y: [20, 0] },
+        { duration: 0.5 }
+      );
+    }
+  }, []);
 
   return (
     <div className="min-h-screen flex">
-      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+      <Sidebar 
+        isOpen={isSidebarOpen} 
+        onClose={toggleSidebar}
+        mainNavItems={mainNavItems}
+        additionalNavItems={additionalNavItems}
+      />
 
       {/* Main Content */}
       <div className="flex-1 p-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="space-y-8"
-        >
+        <div ref={contentRef} className="space-y-8">
           <div className="border border-white p-6 rounded-lg bg-black shadow-lg">
             <h1 className="text-3xl font-bold mb-6 text-white">Glorify Discord Bot - Terms of Service</h1>
             <p className="text-white mb-6">Last Updated: April 1, 2025</p>
@@ -176,7 +211,7 @@ export default function TermsOfService() {
 
               <section id="governing-law" className="bg-white p-4 rounded-md">
                 <p className="leading-relaxed text-black">
-                  These Terms of Service are governed by the laws of [Your Jurisdiction]. Any disputes arising out of or related to these Terms of Service shall be subject to the exclusive jurisdiction of the courts of [Your Jurisdiction].
+                These Terms of Service are governed by the laws of Indonesia. Any disputes arising out of or related to these Terms of Service shall be subject to the exclusive jurisdiction of the courts of Indonesia.
                 </p>
               </section>
             </div>
@@ -190,7 +225,7 @@ export default function TermsOfService() {
               </Link>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

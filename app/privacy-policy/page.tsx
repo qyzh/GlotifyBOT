@@ -1,25 +1,63 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { animate } from 'motion';
 import Link from 'next/link';
-import { Sidebar } from '../components/Sidebar';
-import { useState } from 'react';
+import Sidebar from '../components/Sidebar';
+import { useState, useEffect, useRef } from 'react';
 
 export default function PrivacyPolicy() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const mainNavItems = [
+    { href: '#introduction', label: '$ ./introduction' },
+    { href: '#information-collection', label: '$ ./information-collection' },
+    { href: '#data-usage', label: '$ ./data-usage' },
+    { href: '#data-sharing', label: '$ ./data-sharing' },
+    { href: '#security', label: '$ ./security' },
+    { href: '#data-retention', label: '$ ./data-retention' },
+    { href: '#children', label: '$ ./children-privacy' },
+    { href: '#user-rights', label: '$ ./user-rights' },
+    { href: '#changes', label: '$ ./policy-changes' },
+    { href: '#contact', label: '$ ./contact' },
+    { href: '#international', label: '$ ./international' },
+    { href: '#legal-basis', label: '$ ./legal-basis' },
+    { href: '#california', label: '$ ./california' },
+    { href: '#consent', label: '$ ./consent' },
+  ];
+
+  const additionalNavItems = [
+    { href: '/', label: '$ cd ..', isExternal: true },
+    { href: '/terms-of-service', label: '$ cat terms.txt', isExternal: true },
+    { href: '/privacy-policy', label: '$ cat privacy.txt', isExternal: true },
+  ];
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  useEffect(() => {
+    if (contentRef.current) {
+      animate(
+        contentRef.current,
+        { opacity: [0, 1], y: [20, 0] },
+        { duration: 0.5 }
+      );
+    }
+  }, []);
 
   return (
     <div className="min-h-screen flex">
-      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+      <Sidebar 
+        isOpen={isSidebarOpen} 
+        onClose={toggleSidebar}
+        mainNavItems={mainNavItems}
+        additionalNavItems={additionalNavItems}
+      />
 
       {/* Main Content */}
       <div className="flex-1 p-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="space-y-8"
-        >
+        <div ref={contentRef} className="space-y-8">
           <div className="border border-white p-6 rounded-lg bg-black shadow-lg">
             <h1 className="text-3xl font-bold mb-6 text-white">Glorify Discord Bot - Privacy Policy</h1>
             <p className="text-white mb-6">Last Updated: April 1, 2025</p>
@@ -204,7 +242,7 @@ export default function PrivacyPolicy() {
               </Link>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
